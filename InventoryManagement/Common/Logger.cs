@@ -37,8 +37,10 @@ namespace InventoryManagement.Common
 
             public void LogException(string message)
             {
-                string fileName = string.Format("{0}_{1}.log", "Exception", DateTime.Now.ToString("dd MMMM yyyy HH:mm:ss"));
-                string logFilePath = string.Format(@"{0}\{1}", AppDomain.CurrentDomain.BaseDirectory, fileName);
+                string fileName = string.Format("{0}_{1}.log", "Exception", DateTime.Now.ToString("dd MMMM yyyy"));
+                string logFilePath = Path.Combine(Directory.GetCurrentDirectory(), fileName);
+                               
+                    // string.Format(@"{0}{1}", AppDomain.CurrentDomain.BaseDirectory, fileName);
                 StringBuilder sb = new StringBuilder();
                 sb.AppendLine("----------------------------------------");
                 sb.AppendLine(DateTime.Now.ToString());

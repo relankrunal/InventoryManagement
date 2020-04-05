@@ -22,23 +22,33 @@ namespace InventoryManagement.Common
 
         public List<Schedule> DataManager(string type, out List<Orders> orders)
         {
-            ReadConfig readConfig = ReadConfig.GetInstance;
-
-            IData _data = null;
-            orders = null;
             List<Schedule> schedule = null;
-            if (type.Equals("FileSystem", StringComparison.InvariantCultureIgnoreCase))
+            IData _data = null;
+            try
             {
-                _data = new GetDataFromFile();
-                orders = _data.GetDataFromJSON(readConfig.ReadConfigFile()
-                                                         .SingleOrDefault(x => x.Key.Equals("FilePath", StringComparison.InvariantCultureIgnoreCase))
-                                                         .Value);
+                ReadConfig readConfig = ReadConfig.GetInstance;
 
-                schedule = _data.GetDataFromText(readConfig.ReadConfigFile()
-                                                           .SingleOrDefault(x => x.Key.Equals("Flight-schedule", StringComparison.InvariantCultureIgnoreCase))
-                                                           .Value);
+                orders = null;
+               
+                if (type.Equals("FileSystem", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    _data = new GetDataFromFile();
+                    orders = _data.GetDataFromJSON(readConfig.ReadConfigFile()
+                                                             .SingleOrDefault(x => x.Key.Equals("FilePath", StringComparison.InvariantCultureIgnoreCase))
+                                                             .Value);
+
+                    schedule = _data.GetDataFromText(readConfig.ReadConfigFile()
+                                                               .SingleOrDefault(x => x.Key.Equals("Flight-schedule", StringComparison.InvariantCultureIgnoreCase))
+                                                               .Value);
+                }
+
             }
+            catch (Exception)
+            {
 
+                throw;
+            }
+            
             return schedule;
         }
 

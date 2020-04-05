@@ -16,7 +16,7 @@ namespace InventoryManagement.DL
     public class GetDataFromFile : IData
     {
         private ILog _ILogger;
-        private string BLANK_STRING;
+        private string BLANK_STRING = "";
         public GetDataFromFile()
         {
             _ILogger = Log.GetInstance;
@@ -49,7 +49,8 @@ namespace InventoryManagement.DL
             }
             catch (Exception ex)
             {
-                _ILogger.LogException(ex.StackTrace);
+                _ILogger.LogException( ex.Message + ex.StackTrace);
+               
             }
             return items;
         }
