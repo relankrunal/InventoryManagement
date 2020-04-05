@@ -67,7 +67,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DL\GetDataFromFile.cs" />
-    <Compile Include="Common\Display.cs" />
     <Compile Include="Common\ILog.cs" />
     <Compile Include="Common\Logger.cs" />
     <Compile Include="BL\Parser.cs" />
