@@ -9,8 +9,11 @@ namespace InventoryManagement.Common
 {
     public sealed class ReadConfig
     {
+        int count = 0;
         private ReadConfig()
         {
+            count++;
+            Console.WriteLine($"Count value {count}");
         }
 
         private static readonly object obj = new object();
